@@ -16,14 +16,14 @@
   "scripts": {
     "dev": "tsc -w",
     "prepare": "tsc",
-    "preprepare": "npm run test",
+    "preprepare": "yarn test",
     "test": "npx mocha"
   },
   "bugs": {
     "url": "https://github.com/meetfranz/franz/issues"
   },
   "dependencies": {
-    "color": "^3.1.0"
+    "color": "^4.0.2"
   },
   "gitHead": "9f2ab40b7602bc3df26ebb093b484b9917768f69"
 }

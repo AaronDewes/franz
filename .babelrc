@@ -26,7 +26,7 @@
     ],
     "@babel/proposal-throw-expressions",
     "@babel/syntax-dynamic-import",
-    ["react-intl", {
+    ["formatjs", {
       "messagesDir": "./src/i18n/messages/",
       "enforceDescriptions": false,
       "extractSourceLocation": true

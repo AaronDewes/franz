@@ -1,6 +1,6 @@
 code:
-  cmd: npm run dev
+  cmd: yarn dev
 
 app:
-  cmd: npx electron ./build
+  cmd: yarn electron ./build
   waitOn: http://localhost:8000

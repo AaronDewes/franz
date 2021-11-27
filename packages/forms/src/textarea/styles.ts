@@ -42,7 +42,7 @@ export default (theme: Theme) => ({
     background: theme.inputBackground,
     border: theme.inputBorder,
     borderRadius: theme.borderRadiusSmall,
-    boxSizing: 'border-box' as CSS.BoxSizingProperty,
+    boxSizing: 'border-box' as CSS.Property.BoxSizing,
     display: 'flex',
     order: 1,
     width: '100%',

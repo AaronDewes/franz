@@ -2,7 +2,7 @@ const expect = require('expect.js');
 
 const { colorBackground: colorBackgroundDefault } = require('../lib/themes/default');
 const { colorBackground: colorBackgroundDark } = require('../lib/themes/dark');
-const { default: theme } = require('../lib');
+const { theme } = require('../lib');
 
 describe('Load theme', () => {
   it('Should load default theme', () => {
