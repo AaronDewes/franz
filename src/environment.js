@@ -11,8 +11,6 @@ import {
   LOCAL_TODOS_FRONTEND_URL,
   PRODUCTION_TODOS_FRONTEND_URL,
   DEVELOPMENT_TODOS_FRONTEND_URL,
-  GA_ID_PROD,
-  GA_ID_DEV,
 } from './config';
 
 const { app } = process.type === 'renderer' ? require('@electron/remote') : require('electron');
@@ -62,4 +60,3 @@ export const WS_API = wsApi;
 export const WEBSITE = web;
 export const TODOS_FRONTEND = todos;
 
-export const GA_ID = !isDevMode ? GA_ID_PROD : GA_ID_DEV;

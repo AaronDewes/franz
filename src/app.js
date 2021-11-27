@@ -8,7 +8,8 @@ import {
   Router, Route, hashHistory, IndexRedirect,
 } from 'react-router';
 
-import '@babel/polyfill';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import smoothScroll from 'smoothscroll-polyfill';
 
 import ServerApi from './api/server/ServerApi';

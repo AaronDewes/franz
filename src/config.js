@@ -20,16 +20,11 @@ export const LOCAL_API_WEBSITE = 'http://localhost:3333';
 export const DEV_API_WEBSITE = 'http://hash-58883791519ef6288c952316bdce7fb462283893.franzstaging.com/'; // TODO: revert me
 export const LIVE_API_WEBSITE = 'https://meetfranz.com';
 
-export const STATS_API = 'https://stats.franzinfra.com';
-
 export const LOCAL_TODOS_FRONTEND_URL = 'http://localhost:4000';
 export const PRODUCTION_TODOS_FRONTEND_URL = 'https://app.franztodos.com';
 export const DEVELOPMENT_TODOS_FRONTEND_URL = 'https://development--franz-todos.netlify.com';
 
 export const CDN_URL = 'https://cdn.franzinfra.com';
-
-export const GA_ID_DEV = 'UA-74126766-12';
-export const GA_ID_PROD = 'UA-74126766-10';
 
 export const DEFAULT_APP_SETTINGS = {
   autoLaunchInBackground: false,
