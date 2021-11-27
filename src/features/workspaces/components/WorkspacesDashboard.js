@@ -162,7 +162,6 @@ class WorkspacesDashboard extends Component {
                   <p>{intl.formatMessage(messages.workspaceFeatureInfo)}</p>
                   <UpgradeButton
                     className={classes.upgradeCTA}
-                    gaEventInfo={{ category: 'Workspaces', event: 'upgrade' }}
                     short
                     requiresPro
                   />

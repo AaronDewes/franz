@@ -3,7 +3,6 @@ import moment from 'moment';
 import DelayAppComponent from './Component';
 
 import { DEFAULT_FEATURES_CONFIG } from '../../config';
-import { gaEvent, gaPage } from '../../lib/analytics';
 import { getUserWorkspacesRequest } from '../workspaces/api';
 import { getPoweredByRequest } from './api';
 import { DelayAppStore } from './store';
@@ -79,11 +78,8 @@ export default function init(stores) {
             debug(`App will be delayed for ${config.delayDuration / 1000}s`);
 
             setVisibility(true);
-            gaPage('/delayApp');
-            gaEvent('DelayApp', 'show', 'Delay App Feature');
 
             debug(`Showing ad: ${store.poweredBy.id}`);
-            gaEvent('PoweredBy', 'show', store.poweredBy.id);
 
             if (!globalConfig.needToClick) {
               setTimeout(() => {

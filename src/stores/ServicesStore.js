@@ -13,7 +13,6 @@ import Store from './lib/Store';
 import Request from './lib/Request';
 import CachedRequest from './lib/CachedRequest';
 import { matchRoute } from '../helpers/routing-helpers';
-import { gaEvent, statsEvent } from '../lib/analytics';
 import { workspaceStore } from '../features/workspaces';
 import { serviceLimitStore } from '../features/serviceLimit';
 import { RESTRICTION_TYPES } from '../models/Service';
@@ -279,7 +278,6 @@ export default class ServicesStore extends Store {
 
     if (redirect) {
       this.stores.router.push('/settings/recipes');
-      gaEvent('Service', 'create', recipeId);
     }
   }
 
@@ -356,7 +354,6 @@ export default class ServicesStore extends Store {
 
     if (redirect) {
       this.stores.router.push('/settings/services');
-      gaEvent('Service', 'update', service.recipe.id);
     }
   }
 
@@ -375,15 +372,12 @@ export default class ServicesStore extends Store {
 
     await request._promise;
     this.actionStatus = request.result.status;
-
-    gaEvent('Service', 'delete', service.recipe.id);
   }
 
   @action async _clearCache({ serviceId }) {
     this.clearCacheRequest.reset();
     const request = this.clearCacheRequest.execute(serviceId);
     await request._promise;
-    gaEvent('Service', 'clear cache');
   }
 
   @action _setActive({ serviceId, keepActiveRoute }) {
@@ -400,8 +394,6 @@ export default class ServicesStore extends Store {
     if (this.active.recipe.id === TODOS_RECIPE_ID && !this.stores.todos.settings.isFeatureEnabledByUser) {
       this.actions.todos.toggleTodosFeatureVisibility();
     }
-
-    statsEvent('activate-service', service.recipe.id);
 
     this._focusActiveService();
   }
@@ -665,8 +657,6 @@ export default class ServicesStore extends Store {
         service.order = services[s.id];
       });
     });
-
-    this._reorderAnalytics();
   }
 
   @action _toggleNotifications({ serviceId }) {
@@ -923,10 +913,6 @@ export default class ServicesStore extends Store {
       loop();
     }
   }
-
-  _reorderAnalytics = debounce(() => {
-    gaEvent('Service', 'order');
-  }, ms('5s'));
 
   _wrapIndex(index, delta, size) {
     return (((index + delta) % size) + size) % size;

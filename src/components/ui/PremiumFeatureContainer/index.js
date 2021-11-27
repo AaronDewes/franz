@@ -9,7 +9,6 @@ import { oneOrManyChildElements } from '../../../prop-types';
 import UserStore from '../../../stores/UserStore';
 
 import styles from './styles';
-import { gaEvent } from '../../../lib/analytics';
 import FeaturesStore from '../../../stores/FeaturesStore';
 
 const messages = defineMessages({
@@ -27,16 +26,10 @@ class PremiumFeatureContainer extends Component {
       PropTypes.bool,
       PropTypes.func,
     ]),
-    gaEventInfo: PropTypes.shape({
-      category: PropTypes.string.isRequired,
-      event: PropTypes.string.isRequired,
-      label: PropTypes.string,
-    }),
   };
 
   static defaultProps = {
     condition: null,
-    gaEventInfo: null,
   };
 
   static contextTypes = {
@@ -50,7 +43,6 @@ class PremiumFeatureContainer extends Component {
       actions,
       condition,
       stores,
-      gaEventInfo,
     } = this.props;
 
     const { intl } = this.context;
@@ -75,10 +67,6 @@ class PremiumFeatureContainer extends Component {
             type="button"
             onClick={() => {
               actions.ui.openSettings({ path: 'user' });
-              if (gaEventInfo) {
-                const { category, event, label } = gaEventInfo;
-                gaEvent(category, event, label);
-              }
             }}
           >
             {intl.formatMessage(messages.action)}

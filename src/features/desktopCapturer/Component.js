@@ -11,7 +11,6 @@ import SourceItem from './sourceItem';
 import Modal from '../../components/ui/Modal';
 import { closeModal, shareSourceWithClientWebview, state } from '.';
 import { REQUEST_DESKTOP_CAPTURER_SOURCES_IPC_KEY } from './config';
-// import { gaEvent } from '../../lib/analytics';
 import ServicesStore from '../../stores/ServicesStore';
 
 const messages = defineMessages({

@@ -4,7 +4,6 @@ import { BrowserWindow, getCurrentWindow } from '@electron/remote';
 import Store from './lib/Store';
 import CachedRequest from './lib/CachedRequest';
 import Request from './lib/Request';
-import { gaEvent } from '../lib/analytics';
 
 export default class PaymentStore extends Store {
   @observable plansRequest = new CachedRequest(this.api.payment, 'plans');
@@ -27,8 +26,6 @@ export default class PaymentStore extends Store {
 
   @action _createHostedPage({ planId }) {
     const request = this.createHostedPageRequest.execute(planId);
-
-    gaEvent('Payment', 'createHostedPage', planId);
 
     return request;
   }

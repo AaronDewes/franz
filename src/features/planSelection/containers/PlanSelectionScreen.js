@@ -9,7 +9,6 @@ import UserStore from '../../../stores/UserStore';
 import PlanSelection from '../components/PlanSelection';
 import ErrorBoundary from '../../../components/util/ErrorBoundary';
 import { planSelectionStore, GA_CATEGORY_PLAN_SELECTION } from '..';
-import { gaEvent, gaPage } from '../../../lib/analytics';
 
 const messages = defineMessages({
   dialogTitle: {
@@ -66,8 +65,6 @@ class PlanSelectionScreen extends Component {
           upgradeAccount={(planId) => {
             if (user.data.hadSubscription) {
               this.upgradeAccount(planId);
-
-              gaEvent(GA_CATEGORY_PLAN_SELECTION, 'SelectPlan', planId);
             } else {
               activateTrial({
                 planId,
@@ -75,8 +72,6 @@ class PlanSelectionScreen extends Component {
             }
           }}
           stayOnFree={() => {
-            gaPage('/select-plan/downgrade');
-
             const selection = dialog.showMessageBoxSync(app.mainWindow, {
               type: 'question',
               message: intl.formatMessage(messages.dialogTitle),
@@ -90,15 +85,11 @@ class PlanSelectionScreen extends Component {
               ],
             });
 
-            gaEvent(GA_CATEGORY_PLAN_SELECTION, 'SelectPlan', 'Stay on Free');
-
             if (selection === 0) {
               downgradeAccount();
               hideOverlay();
             } else {
               this.upgradeAccount(plans.personal.yearly.id);
-
-              gaEvent(GA_CATEGORY_PLAN_SELECTION, 'SelectPlan', 'Downgrade');
             }
           }}
           subscriptionExpired={user.team && user.team.state === 'expired' && !user.team.userHasDowngraded}

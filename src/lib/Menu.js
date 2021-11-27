@@ -6,7 +6,6 @@ import { defineMessages } from 'react-intl';
 import { isMac, ctrlKey, cmdKey } from '../environment';
 import { GA_CATEGORY_WORKSPACES, workspaceStore } from '../features/workspaces/index';
 import { workspaceActions } from '../features/workspaces/actions';
-import { gaEvent } from './analytics';
 import { announcementActions } from '../features/announcements/actions';
 import { announcementsStore } from '../features/announcements';
 import { GA_CATEGORY_TODOS, todosStore } from '../features/todos';
@@ -934,7 +933,6 @@ export default class FranzMenu {
       accelerator: `${cmdKey}+D`,
       click: () => {
         workspaceActions.toggleWorkspaceDrawer();
-        gaEvent(GA_CATEGORY_WORKSPACES, 'toggleDrawer', 'menu');
       },
       enabled: this.stores.user.isLoggedIn,
     }, {
@@ -949,7 +947,6 @@ export default class FranzMenu {
       checked: !activeWorkspace,
       click: () => {
         workspaceActions.deactivate();
-        gaEvent(GA_CATEGORY_WORKSPACES, 'switch', 'menu');
       },
     });
 
@@ -962,7 +959,6 @@ export default class FranzMenu {
         checked: activeWorkspace ? workspace.id === activeWorkspace.id : false,
         click: () => {
           workspaceActions.activate({ workspace });
-          gaEvent(GA_CATEGORY_WORKSPACES, 'switch', 'menu');
         },
       }));
     }
@@ -982,7 +978,6 @@ export default class FranzMenu {
       accelerator: `${cmdKey}+T`,
       click: () => {
         todoActions.toggleTodosPanel();
-        gaEvent(GA_CATEGORY_TODOS, 'toggleDrawer', 'menu');
       },
       enabled: this.stores.user.isLoggedIn && isFeatureEnabledByUser,
     });
@@ -994,7 +989,6 @@ export default class FranzMenu {
         label: intl.formatMessage(menuItems.enableTodos),
         click: () => {
           todoActions.toggleTodosFeatureVisibility();
-          gaEvent(GA_CATEGORY_TODOS, 'enable', 'menu');
         },
       });
     }

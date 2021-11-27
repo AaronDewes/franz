@@ -4,7 +4,6 @@ import { inject, observer } from 'mobx-react';
 import { defineMessages, intlShape } from 'react-intl';
 
 import { Button } from '@meetfranz/forms';
-import { gaEvent } from '../../../lib/analytics';
 
 import UserStore from '../../../stores/UserStore';
 import ActivateTrialButton from '../ActivateTrialButton';
@@ -22,17 +21,11 @@ class UpgradeButton extends Component {
     // eslint-disable-next-line
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    gaEventInfo: PropTypes.shape({
-      category: PropTypes.string.isRequired,
-      event: PropTypes.string.isRequired,
-      label: PropTypes.string,
-    }),
     requiresPro: PropTypes.bool,
   };
 
   static defaultProps = {
     className: '',
-    gaEventInfo: null,
     requiresPro: false,
   }
 
@@ -41,13 +34,9 @@ class UpgradeButton extends Component {
   };
 
   handleCTAClick() {
-    const { actions, gaEventInfo } = this.props;
+    const { actions } = this.props;
 
     actions.ui.openSettings({ path: 'user' });
-    if (gaEventInfo) {
-      const { category, event } = gaEventInfo;
-      gaEvent(category, event, 'Upgrade Account');
-    }
   }
 
   render() {

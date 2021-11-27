@@ -356,7 +356,6 @@ export default @observer class EditServiceForm extends Component {
             {!isMac && (
               <PremiumFeatureContainer
                 condition={!isSpellcheckerIncludedInCurrentPlan}
-                gaEventInfo={{ category: 'User', event: 'upgrade', label: 'spellchecker' }}
               >
                 <div className="settings__settings-group">
                   <Select field={form.$('spellcheckerLanguage')} />
@@ -367,7 +366,6 @@ export default @observer class EditServiceForm extends Component {
             {isProxyFeatureEnabled && (
               <PremiumFeatureContainer
                 condition={!isServiceProxyIncludedInCurrentPlan}
-                gaEventInfo={{ category: 'User', event: 'upgrade', label: 'proxy' }}
               >
                 <div className="settings__settings-group">
                   <h3>

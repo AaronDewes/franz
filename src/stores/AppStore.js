@@ -19,7 +19,6 @@ import Request from './lib/Request';
 import { CHECK_INTERVAL, DEFAULT_APP_SETTINGS } from '../config';
 import { isMac } from '../environment';
 import locales from '../i18n/translations';
-import { gaEvent, gaPage, statsEvent } from '../lib/analytics';
 import { getLocale } from '../helpers/i18n-helpers';
 
 import { getServiceIdsFromPartitions, removeServicePartitionDirectory } from '../helpers/service-helpers.js';
@@ -202,11 +201,6 @@ export default class AppStore extends Store {
       this.isFocused = isFocused;
     });
 
-    // analytics autorun
-    reaction(() => this.stores.router.location.pathname, (pathname) => {
-      gaPage(pathname);
-    });
-
     powerMonitor.on('suspend', () => {
       debug('System suspended starting timer');
 
@@ -226,8 +220,6 @@ export default class AppStore extends Store {
             window.location.reload();
           }
         }, ms('2s'));
-
-        statsEvent('resumed-app');
       }
     });
 
@@ -245,8 +237,6 @@ export default class AppStore extends Store {
         localStorage.setItem(CATALINA_NOTIFICATION_HACK_KEY, true);
       }
     }
-
-    statsEvent('app-start');
   }
 
   @computed get cacheSize() {
@@ -358,8 +348,6 @@ export default class AppStore extends Store {
     } catch (err) {
       console.warn(err);
     }
-
-    gaEvent('App', enable ? 'enable autostart' : 'disable autostart');
   }
 
   @action _openExternalUrl({

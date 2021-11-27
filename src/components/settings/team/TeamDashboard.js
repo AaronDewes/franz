@@ -166,7 +166,6 @@ export default @injectSheet(styles) @observer class TeamDashboard extends Compon
                       {!isProUser ? (
                         <UpgradeButton
                           className={classes.cta}
-                          gaEventInfo={{ category: 'Todos', event: 'upgrade' }}
                           requiresPro
                           short
                         />

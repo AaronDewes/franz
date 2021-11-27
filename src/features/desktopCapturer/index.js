@@ -1,7 +1,5 @@
 import { observable } from 'mobx';
 
-// import { gaEvent, gaPage } from '../../lib/analytics';
-
 export { default as Component } from './Component';
 
 const debug = require('debug')('Franz:feature:desktopCapturer');
@@ -49,8 +47,6 @@ export function showModal(webview) {
     isModalVisible: true,
     webview,
   });
-  // gaEvent('Share Franz', 'show');
-  // gaPage('/share-modal');
 }
 
 export function closeModal() {
@@ -58,9 +54,6 @@ export function closeModal() {
   state.webview.send('feature:desktopCapturer:cancelSelectSource');
 
   Object.assign(state, defaultState);
-
-  // gaEvent('Share Franz', 'show');
-  // gaPage('/share-modal');
 }
 
 export function shareSourceWithClientWebview() {

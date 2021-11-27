@@ -8,7 +8,6 @@ import { Button } from '@meetfranz/forms';
 
 import { announcementsStore } from '../index';
 import UIStore from '../../../stores/UIStore';
-import { gaEvent } from '../../../lib/analytics';
 
 const renderer = new marked.Renderer();
 
@@ -235,7 +234,6 @@ class AnnouncementScreen extends Component {
                         label={announcement.main.cta.label}
                         onClick={() => {
                           const {
-                            analytics,
                             href,
                             label,
                           } = announcement.main.cta;
@@ -244,8 +242,6 @@ class AnnouncementScreen extends Component {
                           } else {
                             window.location.href = `#${href}`;
                           }
-
-                          gaEvent(analytics.category, analytics.action, label);
                         }}
                       />
                     </div>
@@ -270,7 +266,6 @@ class AnnouncementScreen extends Component {
                       label={announcement.spotlight.cta.label}
                       onClick={() => {
                         const {
-                          analytics,
                           href,
                           label,
                         } = announcement.spotlight.cta;
@@ -279,8 +274,6 @@ class AnnouncementScreen extends Component {
                         } else {
                           window.location.href = `#${href}`;
                         }
-
-                        gaEvent(analytics.category, analytics.action, label);
                       }}
                     />
                   </div>

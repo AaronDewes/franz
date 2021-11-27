@@ -7,7 +7,6 @@ import { observer } from 'mobx-react';
 import Tabbar from '../services/tabs/Tabbar';
 import { ctrlKey } from '../../environment';
 import { GA_CATEGORY_WORKSPACES, workspaceStore } from '../../features/workspaces';
-import { gaEvent } from '../../lib/analytics';
 import { todosStore, GA_CATEGORY_TODOS } from '../../features/todos';
 import { todoActions } from '../../features/todos/actions';
 
@@ -112,7 +111,6 @@ export default @observer class Sidebar extends Component {
             onClick={() => {
               todoActions.toggleTodosPanel();
               this.updateToolTip();
-              gaEvent(GA_CATEGORY_TODOS, 'toggleDrawer', 'sidebar');
             }}
             disabled={isTodosServiceActive}
             className={`sidebar__button sidebar__button--todos  ${todosStore.isTodosPanelVisible ? 'is-active' : ''}`}
@@ -127,7 +125,6 @@ export default @observer class Sidebar extends Component {
             onClick={() => {
               toggleWorkspaceDrawer();
               this.updateToolTip();
-              gaEvent(GA_CATEGORY_WORKSPACES, 'toggleDrawer', 'sidebar');
             }}
             className={`sidebar__button sidebar__button--workspaces ${isWorkspaceDrawerOpen ? 'is-active' : ''}`}
             data-tip={`${intl.formatMessage(workspaceToggleMessage)} (${ctrlKey}+D)`}

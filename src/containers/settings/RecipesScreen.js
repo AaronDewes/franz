@@ -14,7 +14,6 @@ import UserStore from '../../stores/UserStore';
 import RecipesDashboard from '../../components/settings/recipes/RecipesDashboard';
 import ErrorBoundary from '../../components/util/ErrorBoundary';
 import { FRANZ_DEV_DOCS } from '../../config';
-import { gaEvent } from '../../lib/analytics';
 import { communityRecipesStore } from '../../features/communityRecipes';
 
 export default @inject('stores', 'actions') @observer class RecipesScreen extends Component {
@@ -121,11 +120,9 @@ export default @inject('stores', 'actions') @observer class RecipesScreen extend
           recipeDirectory={recipeDirectory}
           openRecipeDirectory={() => {
             shell.openItem(recipeDirectory);
-            gaEvent('Recipe', 'open-recipe-folder', 'Open Folder');
           }}
           openDevDocs={() => {
             appActions.openExternalUrl({ url: FRANZ_DEV_DOCS });
-            gaEvent('Recipe', 'open-dev-docs', 'Developer Documentation');
           }}
           isCommunityRecipesIncludedInCurrentPlan={communityRecipesStore.isCommunityRecipesIncludedInCurrentPlan}
           isUserPremiumUser={user.isPremium}

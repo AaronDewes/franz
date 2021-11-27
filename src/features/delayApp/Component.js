@@ -7,7 +7,6 @@ import injectSheet from 'react-jss';
 import { Button } from '@meetfranz/forms';
 import { Icon } from '@meetfranz/ui';
 import { mdiArrowRight } from '@mdi/js';
-import { gaEvent } from '../../lib/analytics';
 
 // import Button from '../../components/ui/Button';
 
@@ -104,12 +103,8 @@ export default @inject('stores', 'actions') @injectSheet(styles) @observer class
 
     if (!hadSubscription) {
       actions.user.activateTrial({ planId: defaultTrialPlan });
-
-      gaEvent('DelayApp', 'subscribe_click', 'Delay App Feature');
     } else {
       actions.ui.openSettings({ path: 'user' });
-
-      gaEvent('DelayApp', 'subscribe_click', 'Delay App Feature');
     }
   }
 
@@ -172,8 +167,6 @@ export default @inject('stores', 'actions') @injectSheet(styles) @observer class
                     className={classes.poweredByCTA}
                     onClick={() => {
                       actions.app.openExternalUrl({ url: store.poweredBy.url });
-
-                      gaEvent('PoweredBy', 'clickCTA', store.poweredBy.id);
                     }}
                     type="button"
                   >
@@ -191,8 +184,6 @@ export default @inject('stores', 'actions') @injectSheet(styles) @observer class
                 className={classes.skipAds}
                 onClick={() => {
                   actions.ui.openSettings({ path: 'user' });
-
-                  gaEvent('PoweredBy', 'click', 'skip');
                 }}
               >
                 {intl.formatMessage(messages.poweredByDontShowAdsCTA)}
@@ -202,8 +193,6 @@ export default @inject('stores', 'actions') @injectSheet(styles) @observer class
                 className={classes.skipAds}
                 onClick={() => {
                   actions.app.openExternalUrl({ url: 'https://meetfranz.com/ads' });
-
-                  gaEvent('PoweredBy', 'click', 'placeAd');
                 }}
               >
                 {intl.formatMessage(messages.poweredByPlaceAd)}

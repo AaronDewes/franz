@@ -249,7 +249,6 @@ class TodosWebview extends Component {
               <p>{intl.formatMessage(messages.rolloutInfo)}</p>
               <UpgradeButton
                 className={classes.premiumCTA}
-                gaEventInfo={{ category: 'Todos', event: 'upgrade' }}
                 short
               />
             </div>
