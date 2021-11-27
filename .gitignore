@@ -12,3 +12,10 @@ yarn-error.log
 npm-debug.log*
 lerna-debug.log
 uidev/lib
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
